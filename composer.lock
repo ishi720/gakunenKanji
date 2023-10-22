@@ -1,0 +1,80 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "b9317d57f61669f175af9a6c41825de2",
+    "packages": [
+        {
+            "name": "logue/igo-php",
+            "version": "0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/logue/igo-php.git",
+                "reference": "32997b65f78d56ae0d0c0d4b60591603043acb88"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/logue/igo-php/zipball/32997b65f78d56ae0d0c0d4b60591603043acb88",
+                "reference": "32997b65f78d56ae0d0c0d4b60591603043acb88",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "replace": {
+                "symfony/polyfill-mbstring": "*"
+            },
+            "require-dev": {
+                "phpcompatibility/php-compatibility": "^9.3",
+                "phpunit/phpunit": "^10.0",
+                "squizlabs/php_codesniffer": "^3.7",
+                "symfony/var-dumper": "^6.2"
+            },
+            "suggest": {
+                "ext-mbstring": "Needed to support mb_* functions in class Tagger."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Igo\\": "src/Igo/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Logue",
+                    "email": "logue@hotmail.co.jp",
+                    "homepage": "http://logue.be/"
+                }
+            ],
+            "description": "Morphological analysis engine 'Igo' porting and changed for PHP 7.4 or later and composer.",
+            "homepage": "https://github.com/logue/igo-php",
+            "keywords": [
+                "chasen",
+                "igo",
+                "morphological analysis",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/logue/igo-php/issues",
+                "source": "https://github.com/logue/igo-php",
+                "wiki": "https://github.com/logue/igo-php/wiki"
+            },
+            "time": "2023-03-14T11:53:44+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
+}
