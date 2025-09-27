@@ -74,10 +74,10 @@ function getKanji($grade) {
 * 漢字の判定
 *
 * @param str $s 文字1文字
-* @return boolern 漢字:true 漢字以外:false
+* @return boolean 漢字:true 漢字以外:false
 */
-function isKanji($s) {
-    return preg_match( '/^[一-龠]$/u', $s) === 1 ? true : false;
+function isKanji(string $s): bool {
+    return (bool) preg_match('/^[一-龠]$/u', $s);
 }
 
 // 文章指定
