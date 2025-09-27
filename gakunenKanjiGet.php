@@ -5,7 +5,6 @@ $igo = new Igo\Tagger();
 
 // 文部科学省
 // https://www.mext.go.jp/a_menu/shotou/new-cs/youryou/syo/koku/001.htm
-
 $grades = [
     // 1年生（80字）
     1 => ["一","右","雨","円","王","音","下","火","花","貝","学","気","九","休","玉","金","空","月","犬","見","五","口","校","左","三","山","子","四","糸","字","耳","七","車","手","十","出","女","小","上","森","人","水","正","生","青","夕","石","赤","千","川","先","早","草","足","村","大","男","竹","中","虫","町","天","田","土","二","日","入","年","白","八","百","文","木","本","名","目","立","力","林","六"],
@@ -55,7 +54,7 @@ $igoData = $igo->parse($text);
 // 学年指定で漢字取得
 $kanjiArray = getKanji(1, $grades);
 
-//分割された文字単位で修得漢字を判定し、文章の生成
+// 分割された文字単位で修得漢字を判定し、文章の生成
 $resultText = "";
 foreach ($igoData as $value) {
     $feature = $value->feature;
@@ -63,22 +62,25 @@ foreach ($igoData as $value) {
 
     // 1文字ずづ取り出し
     foreach (mb_str_split($feature[6]) as $str) {
-        //漢字かどうかを判別
-        if (isKanji($str)) {
-            //習得漢字に含まれているかどうかをチェック
+        // 漢字かどうかを判別
+        if (isKanji($str) === true) {
+            // 習得漢字に含まれているかどうかをチェック
             if (array_search($str, $kanjiArray) === false) {
-                $learningFlg = false;//1単語の中に未習得の漢字が含まれていたらfalseを指定
+                // 1単語の中に未習得の漢字が含まれていたらfalseを指定
+                $learningFlg = false;
             }
         }
     }
 
     // テキストの結合
-    if ($learningFlg) {
-        $resultText .= $value->surface; //漢字
+    if ($learningFlg === true) {
+        // 漢字
+        $resultText .= $value->surface;
     } else {
-        $resultText .= $feature[7]; //カナ
+        // カナ
+        $resultText .= $feature[7];
     }
 }
 
-//カタカナをひらがなに変換して表示
+// カタカナをひらがなに変換して表示
 print_r(mb_convert_kana($resultText, "c", "utf-8"));
