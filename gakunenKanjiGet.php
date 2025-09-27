@@ -24,60 +24,60 @@ $grade_5 = ["圧","移","因","永","営","衛","易","益","液","演","応","�
 $grade_6 = ["異","遺","域","宇","映","延","沿","我","灰","拡","革","閣","割","株","干","巻","看","簡","危","机","揮","貴","疑","吸","供","胸","郷","勤","筋","系","敬","警","劇","激","穴","絹","権","憲","源","厳","己","呼","誤","后","孝","皇","紅","降","鋼","刻","穀","骨","困","砂","座","済","裁","策","冊","蚕","至","私","姿","視","詞","誌","磁","射","捨","尺","若","樹","収","宗","就","衆","従","縦","縮","熟","純","処","署","諸","除","将","傷","障","城","蒸","針","仁","垂","推","寸","盛","聖","誠","宣","専","泉","洗","染","善","奏","窓","創","装","層","操","蔵","臓","存","尊","宅","担","探","誕","段","暖","値","宙","忠","著","庁","頂","潮","賃","痛","展","討","党","糖","届","難","乳","認","納","脳","派","拝","背","肺","俳","班","晩","否","批","秘","腹","奮","並","陛","閉","片","補","暮","宝","訪","亡","忘","棒","枚","幕","密","盟","模","訳","郵","優","幼","欲","翌","乱","卵","覧","裏","律","臨","朗","論"];
 
 
-/* 
+/*
 * 学年指定で習得漢字の一覧を返す
 *
 * @param int $grade 学年指定
 * @return array 習得漢字
 */
 function getKanji($grade) {
-	global $grade_1, $grade_2, $grade_3, $grade_4, $grade_5, $grade_6;
+    global $grade_1, $grade_2, $grade_3, $grade_4, $grade_5, $grade_6;
 
-	$result = array();
-	if ($grade === 1) {
-		$result = array_merge($result,$grade_1);
+    $result = array();
+    if ($grade === 1) {
+        $result = array_merge($result,$grade_1);
 
-	} else if ($grade === 2) {
-		$result = array_merge($result,$grade_1);
-		$result = array_merge($result,$grade_2);
+    } else if ($grade === 2) {
+        $result = array_merge($result,$grade_1);
+        $result = array_merge($result,$grade_2);
 
-	} else if ($grade === 3) {
-		$result = array_merge($result,$grade_1);
-		$result = array_merge($result,$grade_2);
-		$result = array_merge($result,$grade_3);
+    } else if ($grade === 3) {
+        $result = array_merge($result,$grade_1);
+        $result = array_merge($result,$grade_2);
+        $result = array_merge($result,$grade_3);
 
-	} else if ($grade === 4) {
-		$result = array_merge($result,$grade_1);
-		$result = array_merge($result,$grade_2);
-		$result = array_merge($result,$grade_3);
-		$result = array_merge($result,$grade_4);
+    } else if ($grade === 4) {
+        $result = array_merge($result,$grade_1);
+        $result = array_merge($result,$grade_2);
+        $result = array_merge($result,$grade_3);
+        $result = array_merge($result,$grade_4);
 
-	} else if ($grade === 5) {
-		$result = array_merge($result,$grade_1);
-		$result = array_merge($result,$grade_2);
-		$result = array_merge($result,$grade_3);
-		$result = array_merge($result,$grade_4);
-		$result = array_merge($result,$grade_5);
+    } else if ($grade === 5) {
+        $result = array_merge($result,$grade_1);
+        $result = array_merge($result,$grade_2);
+        $result = array_merge($result,$grade_3);
+        $result = array_merge($result,$grade_4);
+        $result = array_merge($result,$grade_5);
 
-	} else if ($grade === 6) {
-		$result = array_merge($result,$grade_1);
-		$result = array_merge($result,$grade_2);
-		$result = array_merge($result,$grade_3);
-		$result = array_merge($result,$grade_4);
-		$result = array_merge($result,$grade_5);
-		$result = array_merge($result,$grade_6);
-	}
-	return $result;
+    } else if ($grade === 6) {
+        $result = array_merge($result,$grade_1);
+        $result = array_merge($result,$grade_2);
+        $result = array_merge($result,$grade_3);
+        $result = array_merge($result,$grade_4);
+        $result = array_merge($result,$grade_5);
+        $result = array_merge($result,$grade_6);
+    }
+    return $result;
 }
 
-/* 
+/*
 * 漢字の判定
 *
 * @param str $s 文字1文字
 * @return boolern 漢字:true 漢字以外:false
 */
 function isKanji($s) {
-	return preg_match( '/^[一-龠]$/u', $s) === 1 ? true : false;
+    return preg_match( '/^[一-龠]$/u', $s) === 1 ? true : false;
 }
 
 // 文章指定
@@ -92,26 +92,26 @@ $kanjiArray = getKanji(1);
 //分割された文字単位で修得漢字を判定し、文章の生成
 $resultText = "";
 foreach ($igoData as $value) {
-	$feature = $value->feature;
-	$learningFlg = true;
+    $feature = $value->feature;
+    $learningFlg = true;
 
-	// 1文字ずづ取り出し
-	foreach (mb_str_split($feature[6]) as $str) {
-		//漢字かどうかを判別
-		if (isKanji($str)) {
-			//習得漢字に含まれているかどうかをチェック
-			if (array_search($str, $kanjiArray) === false) { 
-				$learningFlg = false;//1単語の中に未習得の漢字が含まれていたらfalseを指定
-			}
-		}
-	}
+    // 1文字ずづ取り出し
+    foreach (mb_str_split($feature[6]) as $str) {
+        //漢字かどうかを判別
+        if (isKanji($str)) {
+            //習得漢字に含まれているかどうかをチェック
+            if (array_search($str, $kanjiArray) === false) {
+                $learningFlg = false;//1単語の中に未習得の漢字が含まれていたらfalseを指定
+            }
+        }
+    }
 
-	// テキストの結合
-	if ($learningFlg) {
-		$resultText .= $value->surface; //漢字
-	} else {
-		$resultText .= $feature[7]; //カナ
-	}
+    // テキストの結合
+    if ($learningFlg) {
+        $resultText .= $value->surface; //漢字
+    } else {
+        $resultText .= $feature[7]; //カナ
+    }
 }
 
 //カタカナをひらがなに変換して表示
