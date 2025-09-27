@@ -7,3 +7,9 @@ igo-phpを利用して、小学生の習得漢字以外をひらがなに変換
 ```bash
 $ composer install
 ```
+
+# execution
+
+```bash
+$ php gakunenKanjiGet.php
+```
