@@ -7,7 +7,7 @@ $igo = new Igo\Tagger();
 // https://www.mext.go.jp/content/20230120-mxt_kyoiku02-100002604_01.pdf
 $grades = json_decode(file_get_contents(__DIR__ . '/gakunenKanji.json'), true, 512, JSON_THROW_ON_ERROR);
 
-/*
+/**
 * 学年指定で習得漢字の一覧を返す
 *
 * @param int $grade 学年指定
@@ -22,10 +22,10 @@ function getKanji(int $grade, array $grades): array {
     return $result;
 }
 
-/*
+/**
 * 漢字の判定
 *
-* @param str $s 文字1文字
+* @param string $s 文字1文字
 * @return bool 漢字:true 漢字以外:false
 */
 function isKanji(string $s): bool {
@@ -47,7 +47,7 @@ foreach ($igoData as $value) {
     $feature = $value->feature;
     $learningFlg = true;
 
-    // 1文字ずづ取り出し
+    // 1文字ずつ取り出し
     foreach (mb_str_split($feature[6]) as $str) {
         // 漢字かどうかを判別
         if (isKanji($str) === true) {
