@@ -39,7 +39,8 @@ $text = "祇園精舎の鐘の声、諸行無常の響きあり。娑羅双樹�
 $igoData = $igo->parse($text);
 
 // 学年指定で漢字取得
-$kanjiArray = getKanji(1, $grades);
+// 漢字をキーにして、isset で高速に判定できるようにする
+$kanjiSet = array_flip(getKanji(1, $grades));
 
 // 分割された文字単位で修得漢字を判定し、文章の生成
 $resultText = "";
@@ -52,7 +53,7 @@ foreach ($igoData as $value) {
         // 漢字かどうかを判別
         if (isKanji($str) === true) {
             // 習得漢字に含まれているかどうかをチェック
-            if (array_search($str, $kanjiArray) === false) {
+            if (!isset($kanjiSet[$str])) {
                 // 1単語の中に未習得の漢字が含まれていたらfalseを指定
                 $learningFlg = false;
             }
